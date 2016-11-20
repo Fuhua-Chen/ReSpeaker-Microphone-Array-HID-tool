@@ -1,14 +1,10 @@
-var HID = require('../');
-
-
-
+var HID = require('./node-hid-master/');
+var reportID = 0x00;
+var REG_NUM = 0X46;
+var device = new HID.HID(0x2886,0x0007);
 
 var ReSpeakerMicArrayHID={
     
-    reportID = 0x00,
-    REG_NUM = 0X46,
-    device = new HID.HID(0x2886,0x0007),
-
     set_led_mode:function(mode,data1,data2,data3)
     {
         device.write([
@@ -95,4 +91,4 @@ var ReSpeakerMicArrayHID={
 }
 
 
-module.exports=ReSpeakerMicArrayHID;
+module.exports.ReSpeakerMicArrayHID=ReSpeakerMicArrayHID;

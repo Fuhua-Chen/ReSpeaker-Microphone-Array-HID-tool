@@ -1,4 +1,4 @@
-require('ReSpeakerMicArrayHID.js');
+var micarray = require('./ReSpeakerMicArrayHID.js');
 
 
 var args = process.argv.splice(2);  
