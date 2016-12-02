@@ -1,1 +1,0 @@
-D:\GitHub\ReSpeaker-Microphone-Array-HID-tool\c#\ReSpeaker Microphone Array HID Tool\ReSpeaker Microphone Array HID Tool\bin\Debug\ReSpeaker Microphone Array HID Tool.exe.config
