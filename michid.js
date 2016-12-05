@@ -20,21 +20,26 @@ var ReSpeakerMicArrayHID={
 
     get_reg_value:function(reg,length)
     {
-        device.write([
+		var tmp = [
         reportID
-        ,reg,0x80,length,0x00    //address and length
+        ,reg,0x80,length,0 
         ,0,0
-        ]);
-        var tmp = device.readSync();
+        ]
+		
+        device.write(tmp);
+		
+        tmp = device.readSync();
         console.log(tmp[0].toString(16),",",tmp[1].toString(16),",",tmp[2].toString(16),",",tmp[3].toString(16),",",tmp[4].toString(16),",",tmp[5].toString(16),",",tmp[6].toString(16),",",tmp[7].toString(16));
     },
 
     set_reg_value:function(reg,length,arr)
     {
-        device.write([
+		var tmp = [
         reportID
-        ,reg,0x00,length,0x00    //address and length
-        ]+arr);
+        ,reg,0,length,0
+		,arr[0],arr[1],arr[2],arr[3]
+        ];
+        device.write(tmp);
     },
 
     get_all_data:function()
@@ -42,8 +47,6 @@ var ReSpeakerMicArrayHID={
         for(var i = 0; i < REG_NUM; i++)
         {
             this.get_reg_value(i,4);
-            var tmp = device.readSync();
-            console.log(tmp[0].toString(16),",",tmp[1].toString(16),",",tmp[2].toString(16),",",tmp[3].toString(16),",",tmp[4].toString(16),",",tmp[5].toString(16),",",tmp[6].toString(16),",",tmp[7].toString(16));
         }
     },
 
@@ -89,8 +92,14 @@ var ReSpeakerMicArrayHID={
 
 }
 
+//module.exports.ReSpeakerMicArrayHID=ReSpeakerMicArrayHID
 
-//module.exports.ReSpeakerMicArrayHID=ReSpeakerMicArrayHID;
+/*
+ReSpeakerMicArrayHID.set_led_all_color(2,0xef,0xfd);
+
+*/
+
+
 if(!args || args.length ==0){  
     console.log("params error");  
 } 
@@ -106,12 +115,6 @@ else{
         length = parseInt(args[1]);
         var value = parseInt(args[2]);
         data = [(value & 0xff), ((value>>8) & 0xff), ((value>>16) & 0xff), ((value>>24) & 0xff)];
-        //console.log("addr:");console.log(addr);
-        //console.log("length:");console.log(length);
-        //console.log("value:");console.log(value);
-        //console.log('devices:',HID.device());
-        //device.on("data", function(data) {console.log('in data:', data);});
-        //console.log("data");console.log(data[0]);console.log(data[1]);console.log(data[2]);console.log(data[3]);
         ReSpeakerMicArrayHID.set_reg_value(addr,length,data);
         ReSpeakerMicArrayHID.get_reg_value(addr,length);
     }
