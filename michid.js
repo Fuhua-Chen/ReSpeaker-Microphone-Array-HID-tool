@@ -25,9 +25,7 @@ var ReSpeakerMicArrayHID={
         ,reg,0x80,length,0 
         ,0,0
         ]
-		
         device.write(tmp);
-		
         tmp = device.readSync();
         console.log(tmp[0].toString(16),",",tmp[1].toString(16),",",tmp[2].toString(16),",",tmp[3].toString(16),",",tmp[4].toString(16),",",tmp[5].toString(16),",",tmp[6].toString(16),",",tmp[7].toString(16));
     },
@@ -99,12 +97,13 @@ ReSpeakerMicArrayHID.set_led_all_color(2,0xef,0xfd);
 
 */
 
-
+/*
 if(!args || args.length ==0){  
     console.log("params error");  
 } 
 else{
-    if(args.toString()==="getall")
+	var command = args.toString();
+    if(command==="getall")
     {
         console.log(args)
         ReSpeakerMicArrayHID.get_all_data();
@@ -114,6 +113,39 @@ else{
         addr = parseInt(args[0]);
         length = parseInt(args[1]);
         var value = parseInt(args[2]);
+        data = [(value & 0xff), ((value>>8) & 0xff), ((value>>16) & 0xff), ((value>>24) & 0xff)];
+        ReSpeakerMicArrayHID.set_reg_value(addr,length,data);
+        ReSpeakerMicArrayHID.get_reg_value(addr,length);
+    }
+}
+*/
+
+if(!args || args.length ==0){  
+    console.log("params error");  
+} 
+else{
+	var command = args[0].toString();
+    if(command === "getall")
+    {
+        console.log(args)
+        ReSpeakerMicArrayHID.get_all_data();
+    }
+	else if(command === "get")
+	{
+        addr = parseInt(args[1]);
+        length = parseInt(args[2]);
+        ReSpeakerMicArrayHID.get_reg_value(addr,length);
+	}
+    else if(command === "set")
+    {
+        addr = parseInt(args[1]);
+        length = parseInt(args[2]);
+		if(length > 4 || length <= 0 || addr < 0 || addr >= REG_NUM)
+		{
+          console.log("params error");  
+		  return;
+		}
+        var value = parseInt(args[3]);
         data = [(value & 0xff), ((value>>8) & 0xff), ((value>>16) & 0xff), ((value>>24) & 0xff)];
         ReSpeakerMicArrayHID.set_reg_value(addr,length,data);
         ReSpeakerMicArrayHID.get_reg_value(addr,length);
