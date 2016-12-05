@@ -1,7 +1,6 @@
 var HID = require('./node-hid');
 var args = process.argv.splice(2);
 var device = new HID.HID(0x2886,0x0007);
-//var device = new HID.HID(0x2419,0x0100);
 var addr=0;
 var data = new Array();
 var length=0;
