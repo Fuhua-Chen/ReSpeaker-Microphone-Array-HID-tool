@@ -6,6 +6,7 @@ ReSpeaker Microphone Array HID tool
 + node.js >= 4.2.x
 + Terminal, as powershell, git shell, github shell
 + Open a shell window, go to a folder you want to save the code.
++ ReSpeaker Microphone Array Driver for windows:(MicArrayDriver)[https://github.com/Fuhua-Chen/ReSpeaker_Microphone_Array_Driver/blob/master/ReSpeakerMicrophoneArrayDriver.exe]
 
 ### Run commands: 
 + `git clone https://github.com/Fuhua-Chen/ReSpeaker-Microphone-Array-HID-tool`
@@ -40,4 +41,4 @@ ReSpeaker Microphone Array HID tool
 			
 ### Communication protocol
 
-This xlsx file show you how do the communication arrange: [HID PROTOCOL](respeaker micarray hid protocol-20161028.xlsx)
++ This xlsx file shows you how do the communication arrange: [HID PROTOCOL](respeaker micarray hid protocol-20161028.xlsx)
