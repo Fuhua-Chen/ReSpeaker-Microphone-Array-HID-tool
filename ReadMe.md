@@ -38,3 +38,6 @@ ReSpeaker Microphone Array HID tool
 		
 	You can set the reg.
 			
+### Communication protocol
+
+This xlsx file show you how do the communication arrange: [HID PROTOCOL](respeaker micarray hid protocol-20161028.xlsx)
