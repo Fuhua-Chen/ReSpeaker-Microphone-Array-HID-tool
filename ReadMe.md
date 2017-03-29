@@ -41,4 +41,8 @@ ReSpeaker Microphone Array HID tool
 			
 ### Communication protocol
 
-+ This xlsx file shows you how do the communication arrange: [HID PROTOCOL](respeaker micarray hid protocol-20161028.xlsx)
++ This xlsx file shows you how do the communication arrange: [HID PROTOCOL](respeaker micarray hid protocol.xlsx)
+
+### 	Warning!!!
+
++ The install_linux.sh will run faild in some Linux System, deal with the wait.
